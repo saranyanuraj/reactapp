@@ -14,6 +14,7 @@ class Navigation extends React.Component {
 	    	M.Sidenav.init(elem, {});
 	  	});
 	}
+
   	render() {
   	const logo = require('./../../assets/images/logo.png');
     return (

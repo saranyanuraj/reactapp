@@ -2,8 +2,7 @@ import React from 'react'
 import Main from '../main'
 import { Link } from 'react-router-dom'
 import PageTitle from '../includes/page_title.js';
-// import $ from 'jquery'
-// import M from 'materialize-css'
+import Slider from "react-slick";
 const axios = require('axios');
 class News extends Main {
 	constructor(props){
@@ -12,6 +11,7 @@ class News extends Main {
 	    	isLoaded : false,
 	      	config : this.config(),
 	      	media : [],
+	      	slider : [],
 	      	page_key : '',
 	      	id : ''
 	    }
@@ -22,24 +22,52 @@ class News extends Main {
 	get_media(){
 		var self = this;
 		const {match : {params}} = this.props;
+		const { config } = this.state;
 		axios.get(this.state.config.api_url+"media-details/"+params.id, {
 		    params: {
 		      _format: "json"
 		    }
 	  	})
 	  	.then(function (response) {
+	  		var category = response.data[0]['category'];
 	  		self.setState({
 	            media: response.data,
-	            page_key : response.data[0]['category']
+	            page_key : category
 	        });
+	        if(category === 'Gallery'){
+	        	axios.get(config.api_url+"media-detail-gallery/"+params.id, {
+				    params: {
+				      _format: "json"
+				    },
+			  	})
+			  	.then(function (response) {
+			  		self.setState({
+			            slider: response.data['media-gallery']
+			        });
+			  	})
+			  	.catch(function (error) {
+			    	console.log(error);
+			  	});
+	        }
+
 	  	})
 	  	.catch(function (error) {
 	    	console.log(error);
 	  	});
 	}
   	render() {    
-	  	let { media, page_key } = this.state;
+	  	let { media, page_key, slider} = this.state;
 	  	const top_line_img = require('../../assets/images/top-line.png');
+	  	const slider_settings = {
+	  		className: "slider",
+		    dots: true,
+		    infinite: true,
+		    speed: 500,
+      		slidesToShow: 1,
+		    slidesToScroll: 1,
+	      	centerMode: true,
+      		centerPadding: "60px",
+		};
 	    return (
 	       <div className={page_key.toLowerCase()}>
 		      	<PageTitle title="News"/>
@@ -68,6 +96,14 @@ class News extends Main {
 									<div className="container">
 										<div dangerouslySetInnerHTML={{__html: row.media}} className="img-wrap"></div>
 									</div>
+									<Slider {...slider_settings}>
+							          	{slider.map((slider, slide_index) => 
+							          		<div key={slide_index} className="item">
+							            		<img src={slider} alt="" />
+							          		</div>
+							          	)}
+
+							        </Slider>
 								</div>
 							}
 							{row.category === 'Video' &&
