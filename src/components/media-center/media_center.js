@@ -55,7 +55,7 @@ class MediaCenter extends Main {
   		
   		const { filter, media } = this.state;
 	    return (
-	      <div id="main-content">
+	      <div id="main-content" className="media-center-page">
 	      	<PageTitle title="Media Center"/>
 	      	<div id="breadcrumb-wrap">
 				<div className="container">

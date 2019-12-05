@@ -34,7 +34,7 @@ class Banner extends Main {
 	    return (
 	    	<div className="app-slider">
 		        <div className="video-box">
-					<video autoPlay="" playsInline="" muted="" loop="">
+					<video autoPlay playsInline muted loop>
 						<source src="http://13.81.209.109/sites/default/files/2019-10/Homebanner-hd.m4v" type="video/mp4" />
 						<source src="http://13.81.209.109/sites/default/files/2019-10/Homebanner-hd.webm" type="video/webm" />
 						<source src="http://13.81.209.109/sites/default/files/2019-10/Homebanner-hd.ogv" type="video/ogg" />
@@ -51,7 +51,7 @@ class Banner extends Main {
 				<div className="banner-text-wrapper">
 					<div className="banner-text">
 						<h1>Studio 5/6</h1>
-						<h3><span className="red-text">foster innnovation</span>, <span className="blue-text">imagination and <span className="orange-text">creativity</span></span></h3>
+						<h3><span className="red-text">foster innnovation</span>, <span className="blue-text">imagination <b>and</b> <span className="orange-text">creativity</span></span></h3>
 						<p><b>Studio 5/6 </b>is mainly aimed at nurturing youth as digital learners by sharpening their 21st century learning skills, as they develop in an all-pervasive digitavvl environment.</p>
 					</div>
 				</div>

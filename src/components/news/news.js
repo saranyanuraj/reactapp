@@ -43,7 +43,7 @@ class News extends Main {
 	    return (
 	       <div className={page_key.toLowerCase()}>
 		      	<PageTitle title="News"/>
-				<div id="main-container">
+				<div id="main-container" className="single-news">
 					{media.map((row, index) => (
 						<div key={index} >
 							<div className="container">
