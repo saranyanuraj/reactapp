@@ -1,6 +1,7 @@
 import React from 'react'
 import Main from '../main'
 import PageTitle from '../includes/page_title.js'
+import SlideToTop from '../includes/slide_to_top.js'
 import { Link  } from 'react-router-dom'
 const axios = require('axios');
 var contact_form = {
@@ -127,6 +128,7 @@ class Subscribe extends Main {
   		const { contact_form } = this.state;
 	    return (
 	    <div id="main-content">
+	    	<SlideToTop />
 	      	<PageTitle title="Subscribe"/>
 	      	<div id="breadcrumb-wrap">
 				<div className="container">

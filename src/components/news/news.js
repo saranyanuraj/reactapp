@@ -1,7 +1,8 @@
 import React from 'react'
 import Main from '../main'
 import { Link } from 'react-router-dom'
-import PageTitle from '../includes/page_title.js';
+import PageTitle from '../includes/page_title.js'
+import SlideToTop from '../includes/slide_to_top.js'
 import Slider from "react-slick";
 const axios = require('axios');
 class News extends Main {
@@ -70,6 +71,7 @@ class News extends Main {
 		};
 	    return (
 	       <div className={page_key.toLowerCase()}>
+	       		<SlideToTop />
 		      	<PageTitle title="News"/>
 				<div id="main-container" className="single-news">
 					{media.map((row, index) => (

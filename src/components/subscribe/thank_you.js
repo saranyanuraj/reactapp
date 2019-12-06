@@ -1,9 +1,9 @@
 import React from 'react'
 import Main from '../main'
 import PageTitle from '../includes/page_title.js'
+import SlideToTop from '../includes/slide_to_top.js'
 import { Link } from 'react-router-dom'
 // const axios = require('axios');
-
 class ThankYou extends Main {
 	constructor(props){
 	    super(props);
@@ -11,32 +11,15 @@ class ThankYou extends Main {
 	    this.state = {
 	    	isLoaded : false,
 	      	config : this.config(),
-	      	// error : '',
 	    }
 	}
 	componentDidMount(){	
-		// console.log(this.state);
-		// this.filter_menu();
 	}
-	/*filter_menu(){
-		const { config } = this.state;
-		axios.get(config.origin+"/api/media-detailsgallery/4", {
-		    params: {
-		      _format: "json"
-		    }
-	  	})
-	  	.then(function (response) {
-	  		console.log(response.data);
-	        
-	  	})
-	  	.catch(function (error) {
-	    	console.log(error);
-	  	});
-	}*/
   	render() {
   		const top_line_img = require('../../assets/images/top-line.png');
 	    return (
 	    <div id="main-content">
+	    	<SlideToTop />
 	      	<PageTitle title="Subscribe"/>
 	      	<div id="breadcrumb-wrap">
 				<div className="container">
