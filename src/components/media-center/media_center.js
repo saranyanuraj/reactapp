@@ -1,7 +1,7 @@
 import React from 'react'
 import Main from '../main'
 import PageTitle from '../includes/page_title.js'
-import { SlideToTop } from '../includes/slide_to_top.js'
+import SlideToTop from '../includes/slide_to_top.js'
 import { Link } from 'react-router-dom'
 const axios = require('axios');
 class MediaCenter extends Main {
@@ -57,7 +57,7 @@ class MediaCenter extends Main {
   		const { filter, media } = this.state;
 	    return (
 	      <div id="main-content" className="media-center-page">
-	      	<SlideToTop />
+			<SlideToTop />	      
 	      	<PageTitle title="Media Center"/>
 	      	<div id="breadcrumb-wrap">
 				<div className="container">
@@ -73,7 +73,7 @@ class MediaCenter extends Main {
 							<ul >
 								{filter.map((row, index) => (
 								<li className="media-item" key={index}>
-									<Link to={"/filter-media/"+row.tid} >{row.filter}<span>{row.count}</span></Link>
+									<Link to={"/filter-media/"+row.tid}>{row.filter}<span>{row.count}</span></Link>
 								</li>
 								))}
 							</ul>
@@ -82,6 +82,7 @@ class MediaCenter extends Main {
 						</div>
 					</div>
 					<div className="col s9 media-content">
+					<span className="orange-circle"></span>
 						<div className="flex-row col-3">							
 							{media.map((row, index) => (
 								<div className="media-item" key={index}>

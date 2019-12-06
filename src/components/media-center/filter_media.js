@@ -2,7 +2,6 @@ import React from 'react'
 import Main from '../main'
 import { Link, Route} from 'react-router-dom'
 import PageTitle from '../includes/page_title.js'
-import { SlideToTop } from '../includes/slide_to_top.js'
 const axios = require('axios');
 class Filter extends Main{
 	constructor(props){
@@ -19,7 +18,7 @@ class Filter extends Main{
 	componentDidUpdate(){
 		const {match : {params}} = this.props;
 		if(this.state.id !== params.id){
-			this.get_media();
+			this.get_media(); 
     		window.scroll(0, 0);
 		}
 	}
@@ -48,7 +47,6 @@ class Filter extends Main{
 		let {media} = this.state;
 		return (
 				<div>
-				<SlideToTop />
 				{media.map((row, index) => (
 					<div className="media-item" key={index}>
 						<div dangerouslySetInnerHTML={{__html: row.category}} className={"category-wrap "+row.category}></div>

@@ -33,10 +33,12 @@ class Navigation extends React.Component {
 	        <ul id="main-nav" className="sidenav sidenav-fixed" >
 	            <li><NavLink exact to="/" activeClassName="active" className="sidenav-close" >HOME</NavLink></li>
 	            <li><NavLink to="/media-center" activeClassName="active" className="sidenav-close" >MEDIA CENTER</NavLink></li>
+	            <li className="lang"><NavLink to="/ar" activeClassName="active" className="sidenav-close" >عربى<span></span></NavLink></li>
 	            <li><NavLink to="/subscribe" activeClassName="active" className="sidenav-close get-started">
 	            	Get started
 	            	<i className="material-icons">keyboard_backspace</i>
 	            </NavLink></li>
+
 	        </ul>
 	    </div>
 	</header>
