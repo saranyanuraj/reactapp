@@ -126,7 +126,7 @@ class News extends Main {
 										<Link to={"/news/"+row.nid} >
 											<div className="img-wrap" dangerouslySetInnerHTML={{__html: row.image}}></div>
 										</Link>
-										<div className="category-wrap" dangerouslySetInnerHTML={{__html: row.category}} ></div>
+										<div className="category-wrap Gallery" dangerouslySetInnerHTML={{__html: row.category}} ></div>
 										<Link to={"/news/"+row.nid}>
 											<div className="desc" dangerouslySetInnerHTML={{__html: row.title}}></div>
 										</Link>
@@ -139,7 +139,7 @@ class News extends Main {
 					</div>
 					<div className="view-more home">
 						<Link to="/media-center">View More
-							<i className="material-icons">keyboard_backspace</i>
+							<i className="material-icons">arrow_forward</i>
 	 					</Link>
 					</div>
 					<div className="multi-square"><b><i></i></b></div>

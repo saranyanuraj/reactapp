@@ -5,6 +5,7 @@ import Banner from './banner'
 import About from './about'
 import Zone from './zone'
 import News from './news'
+
 // const axios = require('axios');
 class Home extends Main {
 	constructor(props){
@@ -51,7 +52,7 @@ class Home extends Main {
 					<span className="multi-square-orange"><b><i></i></b></span>
 					<div><img src={mail_icon} className="mail-icon" alt="" /></div>
 					<p>Our latest insights, delivered straight to your inbox</p>
-					<p><Link to="/subscribe" className="red-btn btn">Register<i className="material-icons" >keyboard_backspace</i></Link></p>
+					<p><Link to="/subscribe" className="red-btn btn">Register<i className="material-icons" >arrow_forward</i></Link></p>
 				</div>
 			</div>
 	      </div>

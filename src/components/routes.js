@@ -10,6 +10,7 @@ import ThankYou from './subscribe/thank_you'
 import News from './news/news'
 import Notfound from './notfound'
 import '../assets/css/materialize.min.css'
+import '../assets/css/slick.css'
 import '../assets/css/style.css'
 class Routes extends React.Component {
   

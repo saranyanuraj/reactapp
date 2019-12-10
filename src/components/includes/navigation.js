@@ -36,7 +36,7 @@ class Navigation extends React.Component {
 	            <li className="lang"><NavLink to="/ar" activeClassName="active" className="sidenav-close" >عربى<span></span></NavLink></li>
 	            <li><NavLink to="/subscribe" activeClassName="active" className="sidenav-close get-started">
 	            	Get started
-	            	<i className="material-icons">keyboard_backspace</i>
+	            	<i className="material-icons">arrow_forward</i>
 	            </NavLink></li>
 
 	        </ul>

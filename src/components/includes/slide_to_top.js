@@ -28,7 +28,7 @@ export class SlideToTop extends Main {
   }
   render() {
     if(this.props.button){
-      return (<button onClick={ () => { this.scrollToTop(); }}>Button</button>)
+      return (<button onClick={ () => { this.scrollToTop(); }} className="scroll-top">Top</button>)
     }
     else{
       return null

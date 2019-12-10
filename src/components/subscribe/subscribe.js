@@ -1,8 +1,9 @@
 import React from 'react'
 import Main from '../main'
-import PageTitle from '../includes/page_title.js'
 import SlideToTop from '../includes/slide_to_top.js'
+import PageTitle from '../includes/page_title.js'
 import { Link  } from 'react-router-dom'
+import Popup from "reactjs-popup";
 const axios = require('axios');
 var contact_form = {
 	name : { value : "", error : "", class : ""},
@@ -246,14 +247,19 @@ class Subscribe extends Main {
 												<input type="checkbox" 
 												onChange={evt => this.handleChange('iagree', '')}
 												required />
-												<span>I agree to the studio 56 <Link to="/">Privacy Policy</Link></span>
+												<span>I agree to the studio 56 <Popup trigger={<Link>Privacy Policy</Link>} 
+												 position="right center">
+    											<div>Privacy policy !!</div>
+  												</Popup></span>
+												 
 											</label>
 										</div>
 									</div>
 								</div>
+								
 								<div className="btn-wrap">
 									<button className="btn red subscribe" disabled={contact_form.submit ? "" : "disabled"}>
-										Subscribe <i className="material-icons">keyboard_backspace</i>
+										Subscribe <i className="material-icons">arrow_forward</i>
 									</button>
 								</div>
 							</form>
