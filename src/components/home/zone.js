@@ -43,13 +43,7 @@ class Zone extends Main {
 					</div>
 					<div className="service-zone">
 						<div className="flex-row col-3 ng-scope">
-							{zones.map((row, index) => (
-			            		<div className="item" key={index} >
-			            			<div className="icon"></div> 
-			            			<h3 dangerouslySetInnerHTML={{__html: row.zonenames}}></h3> 
-			            			<div className="desc" dangerouslySetInnerHTML={{__html: row.zonesdescription}}></div>         
-			            		</div>
-			          		))}
+							
 						</div>
 						<span className="grey-square"></span>
 					</div>

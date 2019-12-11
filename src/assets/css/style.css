@@ -69,7 +69,8 @@ img { max-width: 100%; }
 #main-nav a { color: #333; font-weight: bold; }
 #main-nav a:hover { background: none; }
 #main-nav li a.get-started { background: #4f5aa8; color: #fff; height: auto; line-height: 36px; margin-top: 11px; }
-#main-nav li a.get-started:hover { background: #F44336; }
+
+#main-nav .sidenav li a.get-started:hover { background: #F44336; }
 #main-nav a.get-started i { position: relative; left: 5px; float: right; color: #fff; margin: 0; line-height: 36px; }
 .blue-text { color: #4f5ba8 !important; }
 .top-line img { opacity: 0; }
@@ -283,7 +284,6 @@ h2.line:after { content: ''; display: block; clear: both; background: #f00; widt
 
 .gallery-news .item img { width: 100%; }
 
-#main-header .sidenav li >a.get-started.active{ color: #fff; background: #F44336; }
 
 #main-nav li a { position: relative; }
 #main-nav li.lang a span { position: absolute; width: 30px; border: 1px solid #853150; height: 13px; top: 11px; left: -20px; }
@@ -321,7 +321,10 @@ h2.line:after { content: ''; display: block; clear: both; background: #f00; widt
 
 #footer{ position: relative; }
 #footer .scroll-top{ position: absolute; }
+#main-nav > li.lang{ display: none; }
 
+
+.filter-wrap a.active{ color: #fcb612; font-weight: bold; }
 
 
 /* ------------ Responsive --------------*/
@@ -339,10 +342,10 @@ h2.line:after { content: ''; display: block; clear: both; background: #f00; widt
 	.top-menu { float: left; width: auto; -webkit-box-shadow: none; box-shadow: none; }
 	#main-header .sidenav { position: relative; width: auto; left: auto; top: auto; margin: 0; -webkit-transform: none; transform: none; height: auto; height: auto; height: auto; padding-bottom: 0; background-color: none; z-index: auto; overflow-y: visible; will-change: auto; -webkit-backface-visibility: hidden; backface-visibility: hidden; -webkit-transform: none !important; transform: none !important; float: right; background: none; -webkit-box-shadow: none; box-shadow: none; }
 	#main-header  .sidenav li>a { height: 36px; line-height: 36px; margin-left: 8px; }
-	#main-nav li a.get-started { margin-left: 20px; }
-	.sidenav li >a { position: relative; margin: 0; padding: 0 20px; }
+	#main-nav.sidenav li a.get-started { margin-left: 20px; }
+	.sidenav li >a { position: relative; margin: 0; padding: 0 16px; }
 	.sidenav li > a:hover:after, .sidenav li > a.active:after { content: ''; display: block; height: 3px; background: #F44336; }
-	#main-header .sidenav li >a.active { color: #4f59a8; }
+
 	#main-header .sidenav li>a { margin-left: 0; }
 
 .app-slider .banner-contact { display: block; background: none; box-shadow: none; width: auto; overflow: hidden; }
