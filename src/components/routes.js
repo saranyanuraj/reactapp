@@ -9,6 +9,9 @@ import Subscribe from './subscribe/subscribe'
 import ThankYou from './subscribe/thank_you'
 import News from './news/news'
 import Notfound from './notfound'
+import Login from './auth/login'
+import Register from './auth/register'
+
 import '../assets/css/materialize.min.css'
 import '../assets/css/slick.css'
 import '../assets/css/style.css'
@@ -24,6 +27,8 @@ class Routes extends React.Component {
           <Route exact path="/filter-media/:id" component={FilterMedia} />
           <Route exact path="/subscribe" component={Subscribe} />
           <Route exact path="/thankyou" component={ThankYou} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/news/:id" component={News} />
 	        <Route component={Notfound} />
 	      </Switch>

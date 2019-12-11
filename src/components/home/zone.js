@@ -33,7 +33,7 @@ class Zone extends Main {
 	  	});
 	}
 	render() {
-  		const { zones } = this.state;
+  		// const { zones } = this.state;
 	    return (
 	    	<div className="zone-wrap">
 				<div className="container">

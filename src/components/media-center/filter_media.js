@@ -1,6 +1,6 @@
 import React from 'react'
 import Main from '../main'
-import { Link, Route} from 'react-router-dom'
+import { Link, Route, NavLink} from 'react-router-dom'
 import PageTitle from '../includes/page_title.js'
 const axios = require('axios');
 class Filter extends Main{
@@ -136,7 +136,7 @@ class FilterMedia extends Main {
 								<ul >
 									{filter.map((row, index) => (
 									<li className="media-item" key={index}>
-										<Link to={"/filter-media/"+row.tid}>{row.filter}<span>{row.count}</span></Link>
+										<NavLink to={"/filter-media/"+row.tid}>{row.filter}<span>{row.count}</span></NavLink>
 									</li>
 									))}
 								</ul>

@@ -247,7 +247,7 @@ class Subscribe extends Main {
 												<input type="checkbox" 
 												onChange={evt => this.handleChange('iagree', '')}
 												required />
-												<span>I agree to the studio 56 <Popup trigger={<Link>Privacy Policy</Link>} 
+												<span>I agree to the studio 56 <Popup trigger={<Link to="/subscribe">Privacy Policy</Link>} 
 												 position="right center">
     											<div>Privacy policy !!</div>
   												</Popup></span>
@@ -258,7 +258,7 @@ class Subscribe extends Main {
 								</div>
 								
 								<div className="btn-wrap">
-									<button className="btn red subscribe" disabled={contact_form.submit ? "" : "disabled"}>
+									<button className="btn red subscribe" >
 										Subscribe <i className="material-icons">arrow_forward</i>
 									</button>
 								</div>

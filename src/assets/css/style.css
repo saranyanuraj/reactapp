@@ -326,6 +326,11 @@ h2.line:after { content: ''; display: block; clear: both; background: #f00; widt
 
 .filter-wrap a.active{ color: #fcb612; font-weight: bold; }
 
+/*-------------- Login Form --------------*/
+.login-form #school_id{
+	display: block;
+}
+
 
 /* ------------ Responsive --------------*/
 @media(min-width:640px) {

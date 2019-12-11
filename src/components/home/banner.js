@@ -30,15 +30,15 @@ class Banner extends Main {
 	  	});			
 	}
 	render() {
-  		const {  banner } = this.state;
+  		const {  banner, config } = this.state;
 	    return (
 	    	<div className="app-slider">
 		        <div className="video-box">
 					<video autoPlay playsInline muted loop>
-						<source src="http://13.81.209.109/sites/default/files/2019-10/Homebanner-hd.m4v" type="video/mp4" />
-						<source src="http://13.81.209.109/sites/default/files/2019-10/Homebanner-hd.webm" type="video/webm" />
-						<source src="http://13.81.209.109/sites/default/files/2019-10/Homebanner-hd.ogv" type="video/ogg" />
-						<source src="http://13.81.209.109/sites/default/files/2019-10/Homebanner-hd.mp4" />
+						<source src={config.origin + "sites/default/files/2019-10/Homebanner-hd.m4v"} type="video/mp4" />
+						<source src={config.origin + "sites/default/files/2019-10/Homebanner-hd.webm"} type="video/webm" />
+						<source src={config.origin + "sites/default/files/2019-10/Homebanner-hd.ogv"} type="video/ogg" />
+						<source src={config.origin + "sites/default/files/2019-10/Homebanner-hd.mp4"} />
 					</video>
 				</div>
 				<div className="banner">
