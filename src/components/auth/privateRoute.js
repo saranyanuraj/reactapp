@@ -9,14 +9,11 @@ export class PrivateRoute extends Main{
 			permission : false,
 			redirect : false,
 		}
-		// this.accessPermission.bind(this);
+		this.accessPermission.bind(this);
 	}
 	async componentDidMount(){
-		// const isAuthenticated = useAuth();
-		// var {...rest } = this.props;
-		console.log("ok");	
-		// var res = await this.accessPermission();
-		// this.setState(res);
+		var res = await this.accessPermission();
+		this.setState(res);
 		
 	}
 	render(){
@@ -24,7 +21,7 @@ export class PrivateRoute extends Main{
 		var { permission, redirect } = this.state;
 
 		if(!permission && !redirect){
-			return "Holding";
+			return null;
 		}
 		else if(!permission && redirect){
 			return (<Redirect to={redirect} />)
@@ -32,30 +29,11 @@ export class PrivateRoute extends Main{
 		else if(permission){
 			return (
 				<Route {...rest} />
-					/*<Route {...rest} render={props =>
-			          <Component {...props} />
-			      }
-			    />*/
 				)
 		}else{}
 	}
 }
 
-/*function PrivateRoute({ component: Component, ...rest }) { 
-	const isAuthenticated = useAuth();
-	console.log("Ok", isAuthenticated);
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to="/login" />
-        )
-      }
-    />
-  );
-}*/
+
 
 export default PrivateRoute;

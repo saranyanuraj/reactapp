@@ -2,11 +2,11 @@ import React from 'react'
 import Main from '../main'
 import SlideToTop from '../includes/slide_to_top.js'
 import PageTitle from '../includes/page_title.js'
-import { Link  } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const axios = require('axios');
 var login_form = {
 	username : { value : "", error : "", class : ""},
-	password : { value : "123456789", error : "", class : ""},
+	password : { value : "", error : "", class : ""},
 
 };
 class Login extends Main {
@@ -16,6 +16,7 @@ class Login extends Main {
 	    	isLoaded : false,
 	      	config : this.config(),
 	      	login_form : login_form,
+	      	error : ""
 	    }
 		this.handleChange = this.handleChange.bind(this);
 		this.onSubmit     = this.onSubmit.bind(this);
@@ -38,24 +39,34 @@ class Login extends Main {
 			username : login_form.username.value,
 			password : login_form.password.value
 		};
-		console.log(submit_data);
-		axios.post(config.origin+"studioservices/user/login?_format=json", submit_data, {
-			headers : {
-				"Access-Control-Allow-Origin" : "*",
-				"Content-Type" : "application/json",
-			}
-		})
-	  	.then(function (response) {
-	  		// self.props.history.push("/thankyou");
-	  		console.log(response);
+		axios.get(config.origin+"session/token/", {
+		    params: {
+		      _format: "json"
+		    }
 	  	})
-	  	.catch(function (error) {
-	    	console.log(error);
-	  	});
+	  	.then(function (response) {
+	  		console.log(response.data);
+			axios.post(config.origin+"studioservices/user/login?_format=json", submit_data, {
+				headers : {
+	                'Content-Type': 'application/json',
+	                'Access-Control-Allow-Origin': '*',
+	                'Accept': 'application/json',
+	                'X-CSRF-Token': response.data
+				}
+			})
+		  	.then(function (response) {	  		
+		  		console.log(response);
+		  		// localStorage.setItem("token", 1234);
+		  		// self.props.history.push("/dashboard");
+		  		// self.setState({error : 'err msg'});
+		  	})
+		  	.catch(function (error) {
+		    	console.log(error);
+		  	});
+		});
 	}
 	render() {
-  		// const {  banner } = this.state;
-  		const { login_form } = this.state;
+  		const { login_form, error } = this.state;
 	    return (
 	    	<div id="main-content">
 				<SlideToTop />
@@ -96,6 +107,9 @@ class Login extends Main {
 							        <label htmlFor="password">Password</label>
 							        <span className="helper-text" data-error="Required field."></span>							      
 								</div>
+								{error &&
+									<span className="helper-text red-text">{error}</span>
+								}
 								<div className="btn-wrap">
 									<button className="btn red login" >
 										Login <i className="material-icons">arrow_forward</i>

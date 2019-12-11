@@ -1,8 +1,22 @@
 import { Component } from 'react'
-class Main extends Component {
+export class Main extends Component {
 	check_login = () => {
 		// console.log('login check function');
 	};
+	accessPermission = async () => {
+		return new Promise((resolve) => {
+			var response = {
+				permission : localStorage.getItem("token") ? true : false,
+				redirect : "/login"
+			};
+			if(response.permission){
+				resolve(response);
+			}
+			else{
+				resolve(response);
+			}
+		});
+	}
 	config = () => {
 		var fbUrl = "https://www.facebook.com/sharer/sharer.php?u="+window.location.href+"&amp;src=sdkpreparse";
         var twitterurl = "http://twitter.com/share?text="+document.title+"&amp;url="+window.location.href;

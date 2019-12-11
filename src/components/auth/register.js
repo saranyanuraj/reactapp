@@ -21,7 +21,8 @@ class Register extends Main {
 	      	config : this.config(),
 	      	school_list : [],
 	      	registration_form : registration_form,
-	      	error : ""
+	      	error : "",
+	      	submit_button : true
 	    }
 		this.handleChange = this.handleChange.bind(this);
 		this.onSubmit     = this.onSubmit.bind(this);
@@ -60,6 +61,7 @@ class Register extends Main {
 		event.preventDefault();
 		var self = this;
 		var {registration_form, config} = this.state;
+		this.setState({submit_button : false});
 		var submit_data = {
 			"name":[{"value":registration_form.name.value}],
 			"mail":[{"value":registration_form.mail.value}],
@@ -73,14 +75,16 @@ class Register extends Main {
 		})
 	  	.then(function (response) {
 	  		// self.props.history.push("/thankyou");
+	  		// self.setState({error : 'err msg'});
 	  		console.log(response);
 	  	})
 	  	.catch(function (error) {
+	  		self.setState({submit_button : true});
 	    	console.log(error);
 	  	});
 	}
 	render() {
-  		const { registration_form, school_list, error } = this.state;
+  		const { registration_form, school_list, error, submit_button } = this.state;
 	    return (
 	    	<div id="main-content">
 				<SlideToTop />
@@ -188,7 +192,7 @@ class Register extends Main {
 									<span className="helper-text red-text">{error}</span>
 								}															      
 								<div className="btn-wrap">
-									<button className="btn red register" >
+									<button className="btn red register" disabled={!submit_button ? "disabled" : ""} >
 										Register <i className="material-icons">arrow_forward</i>
 									</button>
 								</div>						

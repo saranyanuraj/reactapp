@@ -11,6 +11,8 @@ import News from './news/news'
 import Notfound from './notfound'
 import Login from './auth/login'
 import Register from './auth/register'
+import Dashboard from './dashboard'
+import PrivateRoute from './auth/privateRoute';
 
 import '../assets/css/materialize.min.css'
 import '../assets/css/slick.css'
@@ -29,6 +31,7 @@ class Routes extends React.Component {
           <Route exact path="/thankyou" component={ThankYou} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <Route exact path="/news/:id" component={News} />
 	        <Route component={Notfound} />
 	      </Switch>
