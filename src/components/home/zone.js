@@ -33,8 +33,8 @@ class Zone extends Main {
 	  	});
 	}
 	render() {
-  		// const { zones } = this.state;
-	    return (
+  		 const { zones } = this.state;
+	   return (
 	    	<div className="zone-wrap">
 				<div className="container">
 					<div className="zone-text">
@@ -43,7 +43,13 @@ class Zone extends Main {
 					</div>
 					<div className="service-zone">
 						<div className="flex-row col-3 ng-scope">
-							
+							{zones.map((row, index) => (
+			            		<div className="item" key={index} >
+			            			<div className="icon"></div> 
+			            			<h3 dangerouslySetInnerHTML={{__html: row.zonenames}}></h3> 
+			            			<div className="desc" dangerouslySetInnerHTML={{__html: row.zonesdescription}}></div>         
+			            		</div>
+			          		))}
 						</div>
 						<span className="grey-square"></span>
 					</div>

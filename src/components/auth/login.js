@@ -39,7 +39,7 @@ class Login extends Main {
 			username : login_form.username.value,
 			password : login_form.password.value
 		};
-		axios.get(config.origin+"session/token/", {
+		axios.get(config.origin+"services/session/token", {
 		    params: {
 		      _format: "json"
 		    }
@@ -51,14 +51,15 @@ class Login extends Main {
 	                'Content-Type': 'application/json',
 	                'Access-Control-Allow-Origin': '*',
 	                'Accept': 'application/json',
+	                'Connection': 'keep-alive',
 	                'X-CSRF-Token': response.data
 				}
 			})
 		  	.then(function (response) {	  		
 		  		console.log(response);
-		  		// localStorage.setItem("token", 1234);
-		  		// self.props.history.push("/dashboard");
-		  		// self.setState({error : 'err msg'});
+		  		localStorage.setItem("token", 1234);
+		  		self.props.history.push("/dashboard");
+		  		self.setState({error : 'err msg'});
 		  	})
 		  	.catch(function (error) {
 		    	console.log(error);
