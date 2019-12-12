@@ -14,7 +14,9 @@ var registration_form = {
 	repname: { value : "", error : "", class : "" },
 	position : { value : "", error : "", class : "" },
     repmail:{ value : "", error : "", class : "" },
-    repmob:{value : "", error : "", class : ""}
+    repmob:{value : "", error : "", class : ""},
+    school_country_code :{value : "", error : "", class : ""},
+    rep_country_code :{value : "", error : "", class : ""},
 };
 class Register extends Main {
 	constructor(props){
@@ -65,16 +67,18 @@ class Register extends Main {
 		var self = this;
 		var {registration_form, config} = this.state;
 		this.setState({submit_button : false});
+		var school_mob = registration_form.school_country_code.value+registration_form.mobile.value;
+		var rep_mob = registration_form.rep_country_code.value+registration_form.repmob.value;
 		var submit_data = {
 			"name":[{"value":registration_form.mail.value}],
 			"mail":[{"value":registration_form.mail.value}],
 			"field_school_name":[{"target_id":registration_form.school_id.value,"target_type":"taxonomy_term"}],
 			"roles":[{"target_id":"school"}],
-			"field_school_mobile_number":[{"value":registration_form.mobile.value}],
+			"field_school_mobile_number":[{"value":school_mob}],
 			"field_channels_of_communication":[{"value":registration_form.communication_value.value}],
 			"field_rep_name":[{"value":registration_form.repname.value}],
 			"field_rep_email_address":[{"value":registration_form.repmail.value}],
-            "field_rep_mobile_number_":[{"value":registration_form.repmob.value}],
+            "field_rep_mobile_number_":[{"value":rep_mob}],
             "field_rep_position":[{"value":registration_form.position.value}]
 		};
 		axios.get(config.origin+"services/session/token", {
@@ -83,26 +87,24 @@ class Register extends Main {
 		    }
 	  	})
 	  	.then(function (response) {
-	  		console.log(response.data);
-
-		axios.post(config.origin+"studioservices/user?_format=json", submit_data, {
-			headers : {
-	                'Content-Type': 'application/json',
-	                'Access-Control-Allow-Origin': '*',
-	                'Accept': 'application/json',
-	                'Connection': 'keep-alive',
-	                'X-CSRF-Token': response.data
-				}
-		})
-	  	.then(function (response) {
-	  		self.props.history.push("/thankyou");
-	  		self.setState({error : 'err msg'});
-	  		console.log(response);
-	  	})
-	  	.catch(function (error) {
-	  		self.setState({submit_button : true});
-	    	console.log(error);
-	  	});
+			axios.post(config.origin+"studioservices/user?_format=json", submit_data, {
+				headers : {
+		                'Content-Type': 'application/json',
+		                'Access-Control-Allow-Origin': '*',
+		                'Accept': 'application/json',
+		                'Connection': 'keep-alive',
+		                'X-CSRF-Token': response.data
+					}
+			})
+		  	.then(function (response) {
+		  		self.props.history.push("/thankyou");
+		  		// self.setState({error : 'err msg'});
+		  		console.log(response);
+		  	})
+		  	.catch(function (error) {
+		  		self.setState({submit_button : true});
+		    	console.log(error);
+		  	});
 	  	});
 	}
 	render() {
@@ -120,7 +122,7 @@ class Register extends Main {
 				<div id="main-container">
 					<div className="container">
 						<div className="row col-8">
-							<form name="login" onSubmit={this.onSubmit} className="login-form">
+							<form name="login" onSubmit={this.onSubmit} className="login-form register-form">
 								<div className="input-field item">
 									<select name="school_id" id="school_id"
 										onChange={evt => this.handleChange('school_id', evt.target.value) }
@@ -135,18 +137,41 @@ class Register extends Main {
 										<span className="helper-text red-text">Required field.</span>
 							        }							      
 								</div>
-								<div className="input-field item">
-									<input name="mobile"  
-										placeholder="Mobile" 
-										onChange={evt => this.handleChange('mobile', evt.target.value) }
-										onFocus={evt => this.handleChange('mobile', evt.target.value) }
-										id="mobile" 
-										type="text" 
-										className={"validate "+registration_form.mobile.class } 
-										required
-									/>
-							        <label htmlFor="mobile">School Phone Number</label>
-							        <span className="helper-text" data-error="Required field."></span>							      
+								<div className="row mobile">
+									<div className="col s3">
+										<div className="input-field item">
+											<input name="school_country_code"  
+												placeholder="Country Code" 
+												onChange={evt => this.handleChange('school_country_code', evt.target.value) }
+												onFocus={evt => this.handleChange('school_country_code', evt.target.value) }
+												id="school_country_code" 
+												type="text" 
+												minLength="3"
+												maxLength="3"
+												className={"validate "+registration_form.mobile.class } 
+												required
+											/>
+									        <label htmlFor="school_country_code">Country Code</label>
+									        <span className="helper-text" data-error="Enter a valid code."></span>							      
+										</div>		
+									</div>
+									<div className="col s8">
+										<div className="input-field item">
+											<input name="mobile"  
+												placeholder="Mobile" 
+												onChange={evt => this.handleChange('mobile', evt.target.value) }
+												onFocus={evt => this.handleChange('mobile', evt.target.value) }
+												id="mobile" 
+												type="text" 
+												minLength="8"
+												maxLength="8"
+												className={"validate "+registration_form.mobile.class } 
+												required
+											/>
+									        <label htmlFor="mobile">School Phone Number</label>
+									        <span className="helper-text" data-error="Please lengthen this text to 8 character."></span>							      
+										</div>
+									</div>
 								</div>
 								<div className="input-field item">
 									<input name="mail"  
@@ -188,20 +213,44 @@ class Register extends Main {
 							        <label htmlFor="name">Position</label>
 							        <span className="helper-text" data-error="Required field."></span>							      
 								</div>
-								<div className="input-field item">
-										<input name="repmob"  
-										placeholder="Mobile Number" 
-										onChange={evt => this.handleChange('repmob', evt.target.value) }
-										onFocus={evt => this.handleChange('repmob', evt.target.value) }
-										id="repmob" 
-										type="text" 
-										className={"validate "+registration_form.repmob.class } 
-										required
-									/>
-							        <label htmlFor="name">Mobile number</label>
-							        <span className="helper-text" data-error="Required field."></span>							      
+								<div className="row mobile">
+									<div className="col s3">
+										<div className="input-field item">
+											<input name="rep_country_code"  
+												placeholder="Country Code" 
+												onChange={evt => this.handleChange('rep_country_code', evt.target.value) }
+												onFocus={evt => this.handleChange('rep_country_code', evt.target.value) }
+												id="rep_country_code" 
+												type="text" 
+												minLength="3"
+												maxLength="3"
+												className={"validate "+registration_form.mobile.class } 
+												required
+											/>
+									        <label htmlFor="rep_country_code">Country Code</label>
+									        <span className="helper-text" data-error="Enter a valid code."></span>							      
+										</div>		
 									</div>
-									<div className="input-field item">
+									<div className="col s8">
+										<div className="input-field item">
+											<input name="repmob"  
+												placeholder="Mobile Number" 
+												onChange={evt => this.handleChange('repmob', evt.target.value) }
+												onFocus={evt => this.handleChange('repmob', evt.target.value) }
+												id="repmob" 
+												type="text" 
+												minLength="8"
+												maxLength="8"
+												className={"validate "+registration_form.repmob.class } 
+												required
+											/>
+									        <label htmlFor="name">Mobile number</label>
+									        <span className="helper-text" data-error="Required field."></span>							      
+										</div>
+									</div>
+								</div>
+								
+								<div className="input-field item">
 									<input name="repmail"  
 										placeholder="Mail" 
 										onChange={evt => this.handleChange('repmail', evt.target.value) }

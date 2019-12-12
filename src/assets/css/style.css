@@ -330,7 +330,13 @@ h2.line:after { content: ''; display: block; clear: both; background: #f00; widt
 .login-form #school_id{
 	display: block;
 }
-
+.register-form .mobile.row .col{
+	padding-left: 0;
+	margin-left: 0;
+} 
+.register-form .mobile.row{
+	margin-bottom: 0; 
+}
 
 /* ------------ Responsive --------------*/
 @media(min-width:640px) {

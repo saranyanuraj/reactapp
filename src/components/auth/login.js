@@ -59,7 +59,7 @@ class Login extends Main {
 		  		console.log(response);
 		  		localStorage.setItem("token", 1234);
 		  		self.props.history.push("/dashboard");
-		  		self.setState({error : 'err msg'});
+		  		// self.setState({error : 'err msg'});
 		  	})
 		  	.catch(function (error) {
 		    	console.log(error);
