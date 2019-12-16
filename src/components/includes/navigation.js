@@ -1,12 +1,15 @@
 import React from 'react';
 import { NavLink, Link, Redirect} from 'react-router-dom'
 import M from 'materialize-css'
-class Navigation extends React.Component {
+import Main from '../main'
+const axios = require('axios');
+class Navigation extends Main {
 	constructor(props){
 		super(props);
 		this.state = {
 			side_nav : '',
-			token : ''
+			token : '',
+			config : this.config()
 		};
 		this.logOut = this.logOut.bind(this);
 	}
@@ -21,12 +24,27 @@ class Navigation extends React.Component {
 	  	});
 	}
 	logOut(){
-		localStorage.removeItem("token");
-		this.setState({
-	  		token : ""
+		const {token, config} = this.state;
+		axios.post(config.origin+"studioservices/user/logout?_format=json", {
+			headers : {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Accept': 'application/json',
+                'Connection': 'keep-alive',
+                'X-CSRF-Token': token
+			}
+		})
+	  	.then(function (response) {	  		
+	  		localStorage.removeItem("token");
+			this.setState({
+		  		token : ""
+		  	});
+		  	return <Redirect to="" />
+		  	// this.props.history.push("/");
+	  	}).catch(function (error) {
+	    	console.log(error);
 	  	});
-		return <Redirect to="" />
-		// this.props.history.push("/");
+		
 	}
   	render() {
   	const logo = require('./../../assets/images/logo.png');

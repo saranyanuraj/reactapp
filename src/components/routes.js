@@ -21,7 +21,8 @@ class Routes extends React.Component {
   
   render() {
     return (
-      <Router  basename={'/react/'}>        
+    	// basename={'/react/'}
+      <Router  >        
 	      <Navigation />
 	      <Switch>
 	        <Route exact path="/" component={Home} />

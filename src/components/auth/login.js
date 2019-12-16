@@ -45,19 +45,20 @@ class Login extends Main {
 		    }
 	  	})
 	  	.then(function (response) {
-	  		console.log(response.data);
+	  		var token = response.data;
+	  		// localStorage.setItem("token", token);
 			axios.post(config.origin+"studioservices/user/login?_format=json", submit_data, {
 				headers : {
 	                'Content-Type': 'application/json',
 	                'Access-Control-Allow-Origin': '*',
 	                'Accept': 'application/json',
 	                'Connection': 'keep-alive',
-	                'X-CSRF-Token': response.data
+	                'X-CSRF-Token': token
 				}
 			})
 		  	.then(function (response) {	  		
 		  		console.log(response);
-		  		localStorage.setItem("token", 1234);
+		  		localStorage.setItem("token", token);
 		  		self.props.history.push("/dashboard");
 		  		// self.setState({error : 'err msg'});
 		  	})
