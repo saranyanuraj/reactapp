@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom'
 const axios = require('axios');
 var login_form = {
 	username : { value : "", error : "", class : ""},
+	name : { value : "", error : "", class : ""},
+	email : { value : "", error : "", class : ""},
 	password : { value : "", error : "", class : ""},
-
+	password2 : { value : "", error : "", class : ""},
 };
 class Login extends Main {
 	constructor(props){
@@ -36,36 +38,41 @@ class Login extends Main {
 		var self = this;
 		var {login_form, config} = this.state;
 		var submit_data = {
-			username : login_form.username.value,
-			password : login_form.password.value
+			name : login_form.username.value,
+			pass : login_form.password.value
 		};
-		axios.get(config.origin+"services/session/token", {
-		    params: {
-		      _format: "json"
-		    }
-	  	})
-	  	.then(function (response) {
-	  		var token = response.data;
-	  		// localStorage.setItem("token", token);
-			axios.post(config.origin+"studioservices/user/login?_format=json", submit_data, {
-				headers : {
+		axios.post(config.origin+"RAXjZ8cYJYr6BYhD/login?_format=json", submit_data, {
+			   headers : {
 	                'Content-Type': 'application/json',
 	                'Access-Control-Allow-Origin': '*',
 	                'Accept': 'application/json',
 	                'Connection': 'keep-alive',
-	                'X-CSRF-Token': token
 				}
 			})
 		  	.then(function (response) {	  		
 		  		console.log(response);
-		  		localStorage.setItem("token", token);
+		  		self.setState({
+        			'success': 'Login successful',
+        			'error': ''
+      			});
+      			localStorage.setItem('username', response.data.current_user.name);
+                localStorage.setItem('uid', response.data.current_user.uid);
+                localStorage.setItem('csrf_token', response.data.csrf_token);
+                localStorage.setItem('logout_token', response.data.logout_token);
+                localStorage.setItem('auth', window.btoa(self.state.name + ':' + self.state.password));
+		  		localStorage.setItem("token", response.data.csrf_token);
 		  		self.props.history.push("/dashboard");
 		  		// self.setState({error : 'err msg'});
 		  	})
 		  	.catch(function (error) {
-		    	console.log(error);
+		       var errorResponse = error.response.data.message;
+               errorResponse = errorResponse.replace(/(?:\r\n|\r|\n)/g, '<br />');
+               console.log(errorResponse);
+               self.setState({
+        			'success': '',
+        			'error': errorResponse
+      			});
 		  	});
-		});
 	}
 	render() {
   		const { login_form, error } = this.state;
@@ -82,6 +89,9 @@ class Login extends Main {
 				<div id="main-container">
 					<div className="container">
 						<div className="row col-8">
+						   {error &&
+									<span className="helper-text red-text">{error}</span>
+								}
 							<form name="login" onSubmit={this.onSubmit} className="login-form">
 								<div className="input-field item">
 									<input name="username"  
@@ -109,9 +119,7 @@ class Login extends Main {
 							        <label htmlFor="password">Password</label>
 							        <span className="helper-text" data-error="Required field."></span>							      
 								</div>
-								{error &&
-									<span className="helper-text red-text">{error}</span>
-								}
+								
 								<div className="btn-wrap">
 									<button className="btn red login" >
 										Login <i className="material-icons">arrow_forward</i>

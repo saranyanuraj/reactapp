@@ -70,42 +70,43 @@ class Register extends Main {
 		var school_mob = registration_form.school_country_code.value+registration_form.mobile.value;
 		var rep_mob = registration_form.rep_country_code.value+registration_form.repmob.value;
 		var submit_data = {
-			"name":[{"value":registration_form.mail.value}],
-			"mail":[{"value":registration_form.mail.value}],
-			"field_school_name":[{"target_id":registration_form.school_id.value,"target_type":"taxonomy_term"}],
-			"roles":[{"target_id":"school"}],
-			"field_school_mobile_number":[{"value":school_mob}],
-			"field_channels_of_communication":[{"value":registration_form.communication_value.value}],
-			"field_rep_name":[{"value":registration_form.repname.value}],
-			"field_rep_email_address":[{"value":registration_form.repmail.value}],
-            "field_rep_mobile_number_":[{"value":rep_mob}],
-            "field_rep_position":[{"value":registration_form.position.value}]
+			 name: [{"value": registration_form.mail.value}],
+             mail: [{"value": registration_form.mail.value}],
+            field_school_name:[{"target_id":registration_form.school_id.value,"target_type":"taxonomy_term"}],
+            roles:[{"target_id":"school"}],
+            field_school_mobile_number:[{"value": school_mob}],
+            field_channels_of_communication:[{"value": registration_form.communication_value.value}],
+            field_rep_name:[{"value": registration_form.repmail.value}],
+            field_rep_email_address:[{"value": school_mob}],
+            field_rep_mobile_number_:[{"value": rep_mob}],
+            field_rep_position:[{"value": registration_form.position.value}],
+
 		};
-		axios.get(config.origin+"services/session/token", {
-		    params: {
-		      _format: "json"
-		    }
-	  	})
-	  	.then(function (response) {
-			axios.post(config.origin+"studioservices/user?_format=json", submit_data, {
-				headers : {
-		                'Content-Type': 'application/json',
-		                'Access-Control-Allow-Origin': '*',
-		                'Accept': 'application/json',
-		                'Connection': 'keep-alive',
-		                'X-CSRF-Token': response.data
-					}
-			})
-		  	.then(function (response) {
-		  		self.props.history.push("/thankyou");
-		  		// self.setState({error : 'err msg'});
-		  		console.log(response);
-		  	})
-		  	.catch(function (error) {
-		  		self.setState({submit_button : true});
-		    	console.log(error);
-		  	});
-	  	});
+		axios.post(config.origin+"RAXjZ8cYJYr6BYhD/register?_format=json", submit_data, {
+			   headers : {
+	                'Content-Type': 'application/json',
+	                'Access-Control-Allow-Origin': '*',
+	                'Accept': 'application/json',
+	                'Connection': 'keep-alive',
+				}
+	  })
+      .then(function (response) {
+      	self.setState({
+        	'success': 'Registration successful',
+        	'error': ''
+      	});
+      	self.props.history.push("/thankyou");
+
+     })
+      .catch(function (error) {
+      	var errorResponse = error.response.data.message;
+      	errorResponse = errorResponse.replace(/(?:\r\n|\r|\n)/g, '<br />');
+      	self.setState({
+        	'success': '',
+        	'error': errorResponse
+      	});
+      });
+		
 	}
 	render() {
   		const { registration_form, school_list, error, submit_button } = this.state;
@@ -122,6 +123,9 @@ class Register extends Main {
 				<div id="main-container">
 					<div className="container">
 						<div className="row col-8">
+						{error &&
+									<span className="helper-text red-text">{error}</span>
+								}	
 							<form name="login" onSubmit={this.onSubmit} className="login-form register-form">
 								<div className="input-field item">
 									<select name="school_id" id="school_id"
@@ -287,9 +291,7 @@ class Register extends Main {
 									</div>
 									
 								</div>
-								{error &&
-									<span className="helper-text red-text">{error}</span>
-								}															      
+																						      
 								<div className="btn-wrap">
 									<button className="btn red register" disabled={!submit_button ? "disabled" : ""} >
 										Register <i className="material-icons">arrow_forward</i>
