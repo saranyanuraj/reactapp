@@ -141,8 +141,12 @@ class ActivitiesList extends Main {
 							<div className="col s8">
 								<div className="title">{row.title} <span className="{row.type.toLowerCase()}">{row.type}</span></div>
 								<div className="details">
-									<span><i className="material-icons">date_range</i> Start Date <span className="date">{row.startdate}</span></span>
-									<span><i className="material-icons">date_range</i> End Date <span className="date">{row.enddate}</span></span>			
+									{row.startdate &&
+										<span><i className="material-icons">date_range</i> Start Date <span className="date">{row.startdate}</span></span>
+									}
+									{row.enddate &&
+										<span><i className="material-icons">date_range</i> End Date <span className="date">{row.enddate}</span></span>
+									}
 								</div>
 							</div>
 							<div className="col s4">

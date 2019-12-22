@@ -2,6 +2,9 @@ import React from 'react'
 import Main from '../main'
 import SlideToTop from '../includes/slide_to_top.js'
 import PageTitle from '../includes/page_title.js'
+import CompetitionDetails from './competition_details'
+import EventDetails from './event_details'
+import SessionDetails from './session_details'
 import { Link  } from 'react-router-dom'
 
 const axios = require('axios');
@@ -39,15 +42,7 @@ class ActivityDetails extends Main {
   	render() {
 		const top_line_img                     = require('../../assets/images/top-line.png');
 		const { page_title, isLoaded, result } = this.state;
-		const {match : {params}}               = this.props;
-		var content                            = 'content';
-		if(isLoaded){
-			switch(result.type){
-				case 'Competitions':
-					console.log('ok');
-				break
-			}
-		}
+		const {match : {params}}               = this.props;		
 	    return (
 	    <div id="main-content">
 	    	<SlideToTop />
@@ -60,7 +55,14 @@ class ActivityDetails extends Main {
 			</div>
 			<div id="main-container">
 				<div className="container">
-					{content}
+					{(isLoaded && result.type === "Competitions") ?
+						<CompetitionDetails result={result} id={params.id}/> :
+						(isLoaded && result.type === "Events") ?  
+						<EventDetails result={result} id={params.id}/> :
+						(isLoaded && result.type === "Sessions") ?  
+						<SessionDetails result={result} id={params.id}/> :
+						""
+					}
 				</div>			
 			</div>
 			<div className="top-line ng-scope">
