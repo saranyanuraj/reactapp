@@ -6,15 +6,20 @@ import Home from './home/home'
 import MediaCenter from './media-center/media_center'
 import FilterMedia from './media-center/filter_media'
 import Subscribe from './subscribe/subscribe'
-import ListActivicties from './listactivities/listactivities'
 import ThankYou from './subscribe/thank_you'
 import News from './news/news'
 import Notfound from './notfound'
 import Login from './auth/login'
 import Register from './auth/register'
 import Dashboard from './dashboard'
-import ActivityDetails from './act-details/act-details'
+import ActivitiesList from './activities/activities_list'
+import ActivityDetails from './activities/activity_detail'
+
 import PrivateRoute from './auth/privateRoute';
+
+
+// import ActivityDetails from './act-details/act-details'
+
 
 import '../assets/css/materialize.min.css'
 import '../assets/css/slick.css'
@@ -23,8 +28,7 @@ class Routes extends React.Component {
   
   render() {
     return (
-    	// basename={'/react/'}
-      <Router basename={'/react/'} >        
+      <Router  >        
 	      <Navigation />
 	      <Switch>
 	        <Route exact path="/" component={Home} />
@@ -36,8 +40,8 @@ class Routes extends React.Component {
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <Route exact path="/news/:id" component={News} />
-           <Route exact path="/listactivities" component={ListActivicties} />
-           <Route exact path="/act-details/:id" component={ActivityDetails} />
+          <Route exact path="/activities" component={ActivitiesList} />
+          <Route exact path="/activity/:id" component={ActivityDetails} />
 	        <Route component={Notfound} />
 	      </Switch>
         <Footer />
