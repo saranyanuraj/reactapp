@@ -42,7 +42,8 @@ class ActivityDetails extends Main {
   	render() {
 		const top_line_img                     = require('../../assets/images/top-line.png');
 		const { page_title, isLoaded, result } = this.state;
-		const {match : {params}}               = this.props;		
+		const {match : {params}}               = this.props;
+				
 	    return (
 	    <div id="main-content">
 	    	<SlideToTop />

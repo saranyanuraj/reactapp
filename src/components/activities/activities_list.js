@@ -131,7 +131,7 @@ class ActivitiesList extends Main {
 							      <option value="sessions">Sessions</option>
 							      <option value="events">Events</option>
 							    </select>
-							    <label>Select Activity</label>
+							    <label>Select Actuality</label>
 							</div>
 						</div>
 					</div>
@@ -160,6 +160,10 @@ class ActivitiesList extends Main {
 					</div>
 					{ (results.length && isLoaded ) ?(
 						<Pagination
+						  firstPageText=""
+						  lastPageText=""
+						  prevPageText="< Preview"
+						  nextPageText="Next >"
 				          activePage={pager.current_page+1}
 				          itemsCountPerPage={pager.items_per_page}
 				          totalItemsCount={pager.count}

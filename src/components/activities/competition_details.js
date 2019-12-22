@@ -1,8 +1,9 @@
 import React from 'react'
 import Main from '../main'
-import Slider from "react-slick";
+import Slider from "react-slick"
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 const axios = require('axios');
-class CompetitionDetails extends Main {
+export class CompetitionDetails extends Main {
 	constructor(props){
 	    super(props);
 	    this.check_login();
@@ -51,7 +52,7 @@ class CompetitionDetails extends Main {
 						<table><tbody>
 							<tr>
 								<th>Venue</th>
-								<td>{result.address}</td>
+								<td dangerouslySetInnerHTML={{__html: result.address}}></td>
 							</tr>
 							<tr>
 								<th>Date</th>
@@ -63,11 +64,11 @@ class CompetitionDetails extends Main {
 							</tr>
 							<tr>
 								<th>Class No</th>
-								<td></td>
+								<td>{result.field_class_room}</td>
 							</tr>
 							<tr>
 								<th>Trainer Name</th>
-								<td></td>
+								<td>{result.field_trainer_name}</td>
 							</tr>
 							<tr>
 								<th>Gender</th>
@@ -81,10 +82,27 @@ class CompetitionDetails extends Main {
 					</div>
 					<div className="col s6">
 						<h4>Location</h4>
+						<div className="google-map" >
+					    	<Map google={this.props.google}
+							    className={'map'} 
+							    initialCenter={{
+						            lat: result.latitude,
+						            lng: result.longitude
+						        }}
+							    zoom={14}>
+							  <Marker
+							    // title={result.address}
+							    // name={'SOMA'}
+							    position={{lat: result.latitude, lng: result.longitude}} />
+							</Map>
+		        		</div>
 					</div>
 				</div>
 			</div>
 	    )
   	}
 }
-export default CompetitionDetails
+var main_obj = new Main();
+export default GoogleApiWrapper({
+  apiKey: main_obj.config().map_api_key
+})(CompetitionDetails);
