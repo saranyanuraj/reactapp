@@ -31,8 +31,17 @@ class ActivityDetails extends Main {
 	  	})
 	  	.then(function (response) {
 			var type     = response.data[0]['type'];
+			if(type=='Events'){
+				var page_title = 'Event Details';
+			}
+			if(type=='Competitions'){
+				var page_title = 'Competitions';
+			}
+			if(type=='Sessions'){
+				var page_title = 'Session Details';
+			}
 			self.setState({
-				page_title : type+" Details",
+				page_title : page_title,
 				result : response.data[0],
 				isLoaded : true
 			});

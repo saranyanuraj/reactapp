@@ -501,7 +501,10 @@ h2.line:after { content: ''; display: block; clear: both; background: #f00; widt
 
 #main-container .search-wrap .datepicker { background: url(../images/calendar.svg) no-repeat; background-position: right center; background-size: 20px; }
 .activities .details .calendar-icons { background: url(../images/calendar.svg) no-repeat; background-size: 20px; width: 18px; height: 14px; display: inline-block; vertical-align: middle; }
-
+.map {
+    width: 20% !important;
+    height: 15% !important;
+}
 
 
 
