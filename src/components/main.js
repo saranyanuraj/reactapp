@@ -24,6 +24,7 @@ export class Main extends Component {
 			"environment" : "development", //development | production
 			"api_url" : "http://13.81.209.109/api/",
 			"origin" : "http://13.81.209.109/",
+			"map_api_key" : "AIzaSyCzsI__SEELUMsAQYloJrf4d61TPFctVu4",
 			"social_media_links" : {
 				"facebook" : fbUrl,
 				"twitter" : twitterurl,

@@ -165,6 +165,7 @@ class ActivitiesList extends Main {
 					</div>
 					{ (results.length && isLoaded ) ?(
 						<Pagination
+						
 				          activePage={pager.current_page+1}
 				          itemsCountPerPage={pager.items_per_page}
 				          totalItemsCount={pager.count}
