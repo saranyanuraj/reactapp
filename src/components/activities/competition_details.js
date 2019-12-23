@@ -1,9 +1,8 @@
 import React from 'react'
 import Main from '../main'
-import Slider from "react-slick"
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import Slider from "react-slick";
 const axios = require('axios');
-export class CompetitionDetails extends Main {
+class CompetitionDetails extends Main {
 	constructor(props){
 	    super(props);
 	    this.check_login();
@@ -46,13 +45,13 @@ export class CompetitionDetails extends Main {
 		          	</div>
 		        ))}
 				</Slider>
-				<div className="row">
-					<div className="col s6">
+				<div className="row details-wrap">
+					<div className="col s6 main-details">
 						<h4>Details</h4>
 						<table><tbody>
 							<tr>
 								<th>Venue</th>
-								<td dangerouslySetInnerHTML={{__html: result.address}}></td>
+								<td>{result.address}</td>
 							</tr>
 							<tr>
 								<th>Date</th>
@@ -64,11 +63,11 @@ export class CompetitionDetails extends Main {
 							</tr>
 							<tr>
 								<th>Class No</th>
-								<td>{result.field_class_room}</td>
+								<td></td>
 							</tr>
 							<tr>
 								<th>Trainer Name</th>
-								<td>{result.field_trainer_name}</td>
+								<td></td>
 							</tr>
 							<tr>
 								<th>Gender</th>
@@ -80,29 +79,12 @@ export class CompetitionDetails extends Main {
 							</tr>
 						</tbody></table>
 					</div>
-					<div className="col s6">
+					<div className="col s6 main-map">
 						<h4>Location</h4>
-						<div className="google-map" >
-					    	<Map google={this.props.google}
-							    className={'map'} 
-							    initialCenter={{
-						            lat: result.latitude,
-						            lng: result.longitude
-						        }}
-							    zoom={14}>
-							  <Marker
-							    // title={result.address}
-							    // name={'SOMA'}
-							    position={{lat: result.latitude, lng: result.longitude}} />
-							</Map>
-		        		</div>
 					</div>
 				</div>
 			</div>
 	    )
   	}
 }
-var main_obj = new Main();
-export default GoogleApiWrapper({
-  apiKey: main_obj.config().map_api_key
-})(CompetitionDetails);
+export default CompetitionDetails

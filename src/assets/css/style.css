@@ -30,7 +30,8 @@ img { max-width: 100%; height: auto; }
 p { margin: 0 0 1em; line-height: 24px }
 hr { margin: 0 }
 b, strong { font-weight: bolder; }
-.btn { background-color: #d99f1f; border: 0; box-shadow: none; border-radius: 0; height: auto; line-height: normal; padding: 5px 20px 10px; }
+.btn { background-color: #d99f1f; border: 0; box-shadow: none; border-radius: 0; height: auto; line-height: normal; height: 40px; line-height: 40px; }
+button.btn{ line-height: 2px; }
 .btn:hover { box-shadow: none; }
 .btn-lg { padding: 12px 38px }
 .btn:hover { background-color: #333; color: #fff }
@@ -418,3 +419,101 @@ h2.line:after { content: ''; display: block; clear: both; background: #f00; widt
 .btn .material-icons { position: relative; top: 5px; -moz-transition: all .4s ease; transition: all .4s ease; }
 .btn:hover .material-icons { transform: translate(10px, 0px); }
 .login-form { width: 470px; margin: 0 auto; padding: 20px; box-shadow: 0px 0px 8px #00000024; border-radius: 10px; margin-bottom: 90px; }
+
+
+
+
+/* ------------ listactivities -------------*/
+.search-wrap button.search{margin-top: 28px;}
+.blue-btn{background: #4f59a8;}
+.search-wrap { border: 1px solid #d8d8d8; padding: 20px; margin-bottom: 40px; }
+.search-wrap .row { margin: 0; }
+
+
+
+.activities .row { border-bottom: 1px solid #e5e5e5; padding: 20px 0; margin: 0; }
+.blue-btn { text-transform: none; }
+.activities .row .s9 { padding-left: 0; }
+.activities .s3 { text-align: right; padding-right: 0; }
+.activities .details span { color: #333; padding-right: 10px; font-size: 14px; }
+.activities .details span .date { color: #666; }
+.activities .details .material-icons { font-size: 14px; }
+.pagination { text-align: center; margin: 60px 0; }
+
+.activities h3 { font-size: 16px; }
+.activities h3 span { background: #f8f7ca; font-size: 10px; font-weight: normal; padding: 2px 6px; border-radius: 16px; margin-left: 1em; }
+
+.activities h3 span.competitions { background: #ffdbda; }
+.activities h3 span.sessions { background: #f8f7ca; }
+.activities h3 span.events { background: #ddf3f7; }
+.activities .details span { font-size: 12px; color: #000; font-weight: bold; }
+.activities .details .date { color: #666; font-weight: normal; padding-left: 8px; }
+.pagination li { width: 30px; height: 30px; font-size: 14px; border-radius: 50%; }
+.pagination li a { width: 30px; height: 30px; font-size: 12px; border-radius: 50%; }
+.pagination li.active { background-color: #4f59a8; }
+.btn.blue-border { border: 1px solid #4f59a8; background: none; color: #000; text-transform: none; }
+
+.activities .btn-wrap a { text-transform: none; padding: 0 30px; border-radius: 2px; height: 36px; line-height: 36px; margin-left: 20px; }
+
+.activities .btn-wrap { padding-top: 20px; }
+.activiti-list .result-type { position: relative; padding-right: 0; }
+#main-container .result-type .input-field { padding: 0; margin: 0; }
+#main-container .result-type .input-field input { height: 40px; line-height: 40px; }
+.activiti-list .select-wrapper { margin-left: 120px; }
+.activiti-list .result-type  .input-field label { top: 10px; left: 0 }
+.activiti-list  .result-status { font-weight: bold; padding-top: 6px; padding-left: 0; }
+.dropdown-content li>a, .dropdown-content li>span{ color: #666; }
+.datepicker-date-display { background-color: #4f59a8; }
+.datepicker-table td.is-today { color: #4f59a8; }
+.datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done { color: #000; }
+
+.activity-details .slick-slider { width: 100%; padding: 10px; }
+.activity-details .slick-slider .item img { display: block; width: 100%; }
+.activity-details .slick-slider .item { padding: 0; }
+.activity-details .slick-slider:before, .activity-details .slick-slider:after { content: ''; display: block; width: 300px; height: 300px; position: absolute; line-height: normal; }
+.activity-details .slick-slider .slick-list { position: relative; z-index: 9; }
+.activity-details .slick-slider:before { border-top: 10px solid #e2df1a; border-left: 10px solid #e2df1a; top: 0; left: 0; }
+.activity-details .slick-slider:after { border-bottom: 10px solid #ff6560; border-right: 10px solid #ff6560; bottom: 9px; right: 0; }
+
+
+
+.activity-details .slick-slider .slick-arrow { position: absolute; bottom: -20px; top: auto; right: auto; left: 0; width: 50px; height: 30px; overflow: hidden; border: 1px solid #ccc; }
+.activity-details .slick-slider .slick-arrow.slick-prev { }
+.activity-details .slick-slider .slick-arrow.slick-next { left: 60px; }
+.activity-details .slick-next:before, .slick-prev:before { content: normal; }
+
+
+.activity-details .details-wrap { padding: 80px 0; }
+.activity-details .details-wrap h4 { color: #4f59a8; }
+.activity-details .details-wrap .main-details { padding-left: 0; }
+.activity-details .details-wrap table th, .activity-details .details-wrap table td { padding: 10px 0; }
+.activity-details .details-wrap table th { width: 120px; }
+
+
+#main-container { position: relative; }
+.red-sq { border-color: #b20110; position: absolute; }
+.activiti-list .red-sq.one { border-color: #b20110; top: 10%; right: 3%; }
+.activiti-list .red-sq.two { border-color: #b20110; position: absolute; bottom: -1%; left: 3%; }
+.activiti-list .search-wrap .multi-square.one { position: absolute; top: 3%; left: 30px; }
+.activiti-list .multi-square.two { position: absolute; bottom: 37%; right: 3%; }
+
+.btn.yellow-btn { background: #fdb714; color: #333; }
+
+#main-container .search-wrap .datepicker { background: url(../images/calendar.svg) no-repeat; background-position: right center; background-size: 20px; }
+.activities .details .calendar-icons { background: url(../images/calendar.svg) no-repeat; background-size: 20px; width: 18px; height: 14px; display: inline-block; vertical-align: middle; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

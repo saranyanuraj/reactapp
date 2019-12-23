@@ -73,7 +73,7 @@ class ActivitiesList extends Main {
   		const top_line_img = require('../../assets/images/top-line.png');
   		const { results, pager, isLoaded } = this.state;
 	    return (
-	    <div id="main-content">
+	    <div id="main-content" className="activiti-list">
 	    	<SlideToTop />
 	      	<PageTitle title="Subscribe with Activities"/>
 	      	<div id="breadcrumb-wrap">
@@ -84,9 +84,11 @@ class ActivitiesList extends Main {
 			</div>
 			<div id="main-container">
 				<div className="container">
+					<div className="search-wrap">
+					<span className="multi-square one"><b><i></i></b></span>
 					<form action="" onSubmit={this.onSubmit} method="post"  name="search" className="search">	
 						<div className="row">	
-							<div className="col s6">
+							<div className="col s7">
 								<div className="input-field item">
 									<input name="Title"  
 										placeholder="Title" 
@@ -98,7 +100,7 @@ class ActivitiesList extends Main {
 								    <label htmlFor="title">Title</label>						      
 								</div>
 							</div>
-							<div className="col s4">
+							<div className="col s3">
 								<div className="input-field item">
 									<input name="Date"  
 										placeholder="Date" 
@@ -114,16 +116,17 @@ class ActivitiesList extends Main {
 								</div>
 							</div>
 							<div className="col s2">
-								<button className="btn search">Search <i className="material-icons">arrow_forward</i></button>
+								<button className="btn yellow-btn search">Search <i className="material-icons">arrow_forward</i></button>
 							</div>
 						</div>
 					</form>
+					</div>
 					<div className="row">
-						<div className="col s6 result-status">
-							{isLoaded ? "Search Result "+(pager.current_page+1)+" of "+pager.pages : ""}
+						<div className="col s7 result-status">
+							{isLoaded ? "Search Result ( "+(pager.current_page+1)+" of "+pager.pages : ""} )
 
 						</div>
-						<div className="col s6 type">
+						<div className="col s5 result-type">
 							<div className="input-field col s12">
 							    <select onChange={evt => this.handleChange('type', evt.target.value)}>
 							      <option value="All" >All</option>
@@ -131,26 +134,28 @@ class ActivitiesList extends Main {
 							      <option value="sessions">Sessions</option>
 							      <option value="events">Events</option>
 							    </select>
-							    <label>Select Actuality</label>
+							    <label>Select Activity</label>
 							</div>
 						</div>
 					</div>
 					<div className="activities">
 					{results.map((row, index) => (
 						<div className="row" key={index}>						
-							<div className="col s8">
-								<div className="title">{row.title} <span className="{row.type.toLowerCase()}">{row.type}</span></div>
+							<div className="col s9">
+								<h3 className="title">{row.title} <span className={row.type.toLowerCase()}>{row.type}</span></h3>
 								<div className="details">
 									{row.startdate &&
-										<span><i className="material-icons">date_range</i> Start Date <span className="date">{row.startdate}</span></span>
+										<span><i className="calendar-icons"></i> Start Date <span className="date">{row.startdate}</span></span>
 									}
 									{row.enddate &&
-										<span><i className="material-icons">date_range</i> End Date <span className="date">{row.enddate}</span></span>
+										<span><i className="calendar-icons"></i> End Date <span className="date">{row.enddate}</span></span>
 									}
 								</div>
 							</div>
-							<div className="col s4">
-								<Link to={"/activity/"+row.id} title="Details">Details</Link>
+							<div className="col s3 btn-wrap">
+								<Link to={"/activity/"+row.id} title="Details" className="btn blue-border">Details</Link>
+								<Link to={"/activity/"+row.id} title="Details" className="btn blue-btn">Enroll</Link>
+
 							</div>
 						</div>
 					))}
@@ -160,10 +165,6 @@ class ActivitiesList extends Main {
 					</div>
 					{ (results.length && isLoaded ) ?(
 						<Pagination
-						  firstPageText=""
-						  lastPageText=""
-						  prevPageText="< Preview"
-						  nextPageText="Next >"
 				          activePage={pager.current_page+1}
 				          itemsCountPerPage={pager.items_per_page}
 				          totalItemsCount={pager.count}
@@ -171,12 +172,25 @@ class ActivitiesList extends Main {
 						  onChange={this.handlePageChange}
 				        />):""
 			    	}
-				</div>				
+				</div>
+							<div className="sparkles">
+				<span className="orange-circle"></span>
+				<span className="multi-square two"><b><i></i></b></span>
+				<span className="grey-square-rotate red-sq one"></span>
+				<span className="grey-square-rotate red-sq two"></span>
+			</div>				
 			</div>
 			<div className="top-line ng-scope">
 				<img src={top_line_img} alt="" />
 			</div>
 	    </div>
+
+
+
+
+
+
+
 	    )
   	}
 }

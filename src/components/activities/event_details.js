@@ -1,9 +1,8 @@
 import React from 'react'
 import Main from '../main'
-import Slider from "react-slick"
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
+import Slider from "react-slick";
 const axios = require('axios');
-export class EventDetails extends Main {
+class EventDetails extends Main {
 	constructor(props){
 	    super(props);
 	    this.check_login();
@@ -46,8 +45,8 @@ export class EventDetails extends Main {
 		          	</div>
 		        ))}
 				</Slider>
-				<div className="row">
-					<div className="col s6">
+				<div className="row  details-wrap">
+					<div className="col s6 main-details">
 						<h4>Details</h4>
 						<table><tbody>
 							<tr>
@@ -60,7 +59,7 @@ export class EventDetails extends Main {
 							</tr>
 							<tr>
 								<th>Zone/Address</th>
-								<td dangerouslySetInnerHTML={{__html: result.zone+"/"+result.address}}></td>
+								<td>{result.zone}/{result.address}</td>
 							</tr>
 							<tr>
 								<th>Age Group</th>
@@ -76,29 +75,12 @@ export class EventDetails extends Main {
 							</tr>
 						</tbody></table>
 					</div>
-					<div className="col s6">
+					<div className="col s6 main-map">
 						<h4>Location</h4>
-						<div className="google-map" >
-					    	<Map google={this.props.google}
-							    className={'map'} 
-							    initialCenter={{
-						            lat: result.latitude,
-						            lng: result.longitude
-						        }}
-							    zoom={14}>
-							  <Marker
-							    // title={result.address}
-							    // name={'SOMA'}
-							    position={{lat: result.latitude, lng: result.longitude}} />
-							</Map>
-		        		</div>
 					</div>
 				</div>
 			</div>
 	    )
   	}
 }
-var main_obj = new Main();
-export default GoogleApiWrapper({
-  apiKey: main_obj.config().map_api_key
-})(EventDetails);
+export default EventDetails
