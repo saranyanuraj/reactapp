@@ -142,7 +142,7 @@ class ActivitiesList extends Main {
 					{results.map((row, index) => (
 						<div className="row" key={index}>						
 							<div className="col s9">
-								<h3 className="title">{row.title} <span className={row.type.toLowerCase()}>{row.type}</span></h3>
+								<h3 className="title"><Link to={"/activity/"+row.id} >{row.title}</Link > <span className={row.type.toLowerCase()}>{row.type}</span></h3>
 								<div className="details">
 									{row.startdate &&
 										<span><i className="calendar-icons"></i> Start Date <span className="date">{row.startdate}</span></span>
@@ -165,7 +165,10 @@ class ActivitiesList extends Main {
 					</div>
 					{ (results.length && isLoaded ) ?(
 						<Pagination
-						
+						   prevPageText='Preview '
+                           nextPageText='Next'
+                           firstPageText='<'
+                           lastPageText='>'
 				          activePage={pager.current_page+1}
 				          itemsCountPerPage={pager.items_per_page}
 				          totalItemsCount={pager.count}
