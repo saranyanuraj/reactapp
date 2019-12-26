@@ -77,7 +77,17 @@ class ActivityDetails extends Main {
 			<div className="top-line ng-scope">
 				<img src={top_line_img} alt="" />
 			</div>
+	    <div className="sparkles">
+			<span className="orange-circle"></span>
+			<span className="multi-square one"><b><i></i></b></span>
+			<span className="multi-square two"><b><i></i></b></span>
+			<span className="grey-square-rotate red-sq one"></span>
+			<span className="grey-square-rotate red-sq two"></span>
+		</div>
+
+
 	    </div>
+
 
 
 

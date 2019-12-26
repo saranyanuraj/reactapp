@@ -36,16 +36,22 @@ class EventDetails extends Main {
 					      	slidesToScroll: 1
 					    };
 	    return (
-		    <div className="competition">
+		    <div className="event-details">
+
 				<h2>{result.eventname}</h2>
-				<div className="description" dangerouslySetInnerHTML={{__html: result.details}}></div>
-				<Slider {...slick_settings}>
-				{gallery.map((row, index) => (
-					<div className="item" key={index}>
-		            	<img src={row} alt="" />
-		          	</div>
-		        ))}
-				</Slider>
+				<div class="row">
+					<div className="col s6 description" dangerouslySetInnerHTML={{__html: result.details}}></div>
+					<div className="col s6 gallery-wrap">
+						<Slider {...slick_settings}>
+						{gallery.map((row, index) => (
+						<div className="item" key={index}>
+							<img src={row} alt="" />
+						</div>
+						))}
+						</Slider>
+					</div>
+				</div>
+
 				<div className="row  details-wrap">
 					<div className="col s6 main-details">
 						<h4>Details</h4>

@@ -100,7 +100,7 @@ class ActivitiesList extends Main {
 								    <label htmlFor="title">Title</label>						      
 								</div>
 							</div>
-							<div className="col s3">
+							<div className="col s3 date-popup">
 								<div className="input-field item">
 									<input name="Date"  
 										placeholder="Date" 
