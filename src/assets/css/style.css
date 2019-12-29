@@ -409,10 +409,12 @@ h2.line:after { content: ''; display: block; clear: both; background: #f00; widt
 .materials-wrap .item { text-align: center; }
 .materials-wrap .img-wrap { width: 160px; height: 100px; border: 1px solid #ccc; margin: 0 auto 20px; }
 #main-container .equipment-use .input-field { padding-top: 16px; }
-.equipment-use { margin-bottom: 40px; }
+.equipment-use { margin: 40px 0; }
 .session-details .machine-location { margin-top: 40px; margin-bottom: 80px; }
 .event-details .description { padding-left: 0; }
-
+.session-details .description{ margin-top: 40px; }
+.session-details table tr { border-bottom: none; }
+.session-details .description { margin-bottom: 40px; }
 
 
 
