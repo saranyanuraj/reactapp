@@ -411,6 +411,8 @@ h2.line:after { content: ''; display: block; clear: both; background: #f00; widt
 #main-container .equipment-use .input-field { padding-top: 16px; }
 .equipment-use { margin-bottom: 40px; }
 .session-details .machine-location { margin-top: 40px; margin-bottom: 80px; }
+.event-details .description { padding-left: 0; }
+
 
 
 
